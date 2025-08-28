@@ -73,6 +73,49 @@
     
     detailsDiv.innerHTML = content;
   </script>
+
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+    input, button {
+      padding: 8px;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+    #result {
+      margin-top: 20px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Calculate square</h1>
+  <input type="number" id="numberInput" placeholder="Type a number" />
+  <button id="calculateBtn">Calculate square</button>
+
+  <div id="result"></div>
+
+  <script>
+    const numberInput = document.getElementById("numberInput");
+    const calculateBtn = document.getElementById("calculateBtn");
+    const resultDiv = document.getElementById("result");
+
+    calculateBtn.addEventListener("click", () => {
+      const num = Number(numberInput.value); 
+      if (isNaN(num)) {
+        resultDiv.textContent = "Please type a valid digit!";
+      } else {
+        const squared = num * num; 
+        resultDiv.textContent = `The square of ${num} is ${squared}`;
+      }
+    });
+  </script>
+</body>
+</html>
+
 </body>
 </html>
 
