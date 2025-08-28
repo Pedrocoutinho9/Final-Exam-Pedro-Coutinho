@@ -1,195 +1,47 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
-  <meta charset="UTF-8">
-  <title>My Page</title>
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      font-family: Arial, sans-serif;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: background-color 0.5s;
-    }
-
-    .container {
-      text-align: center;
-      width: 450px;
-      padding: 20px;
-      border: 2px solid #333;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    input, button, textarea {
-      padding: 8px;
-      font-size: 16px;
-      margin: 5px 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      width: 100%;
-      box-sizing: border-box;
-    }
-
-    ul {
-      padding-left: 20px;
-      text-align: left;
-    }
-
-    #student-details {
-      border: 2px solid #333;
-      padding: 15px;
-      margin: 15px 0;
-      background-color: #f0f0f0;
-      border-radius: 5px;
-      text-align: left;
-    }
-
-    #result, #ageMessage, #formMessage {
-      margin-top: 10px;
-      font-weight: bold;
-    }
-
-    h1 {
-      margin-bottom: 10px;
-    }
-
-    #colorBtn {
-      padding: 10px 20px;
-      cursor: pointer;
-      font-size: 16px;
-      border-radius: 5px;
-    }
-
-    form {
-      margin-top: 20px;
-      display: flex;
-      flex-direction: column;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <title>My Page</title>
 </head>
+
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+
 <body>
-  <div class="container">
+    <div class="container">
 
-    <h1>My Top 5 Movies</h1>
-    <ul id="filmes-lista"></ul>
+        <h1>My Top 5 Movies</h1>
+        <ul id="filmes-lista"></ul>
 
-    <h1>Student Details</h1>
-    <div id="student-details"></div>
+        <h1>Student Details</h1>
+        <div id="student-details"></div>
 
-    <h1>Calculate Square</h1>
-    <input type="number" id="numberInput" placeholder="Type a number" />
-    <button id="calculateBtn">Calculate</button>
-    <div id="result"></div>
+        <h1>Calculate Square</h1>
+        <input type="number" id="numberInput" placeholder="Type a number" />
+        <button id="calculateBtn">Calculate</button>
+        <div id="result"></div>
 
-    <h1>Age Verification</h1>
-    <input type="number" id="ageInput" placeholder="Type your age" />
-    <button id="checkBtn">Verify</button>
-    <div id="ageMessage"></div>
+        <h1>Age Verification</h1>
+        <input type="number" id="ageInput" placeholder="Type your age" />
+        <button id="checkBtn">Verify</button>
+        <div id="ageMessage"></div>
 
-    <h1>Background Color Changer</h1>
-    <button id="colorBtn">Change</button>
+        <h1>Background Color Changer</h1>
+        <button id="colorBtn">Change</button>
 
-    <h1>Contact Form</h1>
-    <form id="contactForm">
-      <input type="text" id="name" placeholder="Name" required />
-      <input type="email" id="email" placeholder="Email" required />
-      <textarea id="messageField" placeholder="Message" rows="5" required></textarea>
-      <button type="submit">Enviar</button>
-    </form>
-    <div id="formMessage"></div>
+        <h1>Contact Form</h1>
+        <form id="contactForm">
+            <input type="text" id="name" placeholder="Name" required />
+            <input type="email" id="email" placeholder="Email" required />
+            <textarea id="messageField" placeholder="Message" rows="5" required></textarea>
+            <button type="submit">Enviar</button>
+        </form>
+        <div id="formMessage"></div>
 
-  </div>
+    </div>
 
-  <script>
-    // Movies
-    const filmes = ["The Godfather","A Clockwork Orange","Pulp Fiction","Interstellar","Scarface"];
-    const lista = document.getElementById("filmes-lista");
-    filmes.forEach(filme => {
-      const li = document.createElement("li");
-      li.textContent = filme;
-      lista.appendChild(li);
-    });
-
-    // Student Details
-    const Students = { Name: "Pedro", Age: 22, Skills: ["JavaScript","HTML","CSS"] };
-    const detailsDiv = document.getElementById("student-details");
-    detailsDiv.innerHTML = `
-      <p><strong>Name:</strong> ${Students.Name}</p>
-      <p><strong>Age:</strong> ${Students.Age}</p>
-      <p><strong>Skills:</strong></p>
-      <ul>${Students.Skills.map(skill => `<li>${skill}</li>`).join('')}</ul>
-    `;
-
-    // Calculate Square
-    const numberInput = document.getElementById("numberInput");
-    const calculateBtn = document.getElementById("calculateBtn");
-    const resultDiv = document.getElementById("result");
-    calculateBtn.addEventListener("click", () => {
-      const num = Number(numberInput.value);
-      if(isNaN(num)) resultDiv.textContent = "Please type a valid number!";
-      else resultDiv.textContent = `The square of ${num} is ${num*num}`;
-    });
-
-    // Age Verification
-    const ageInput = document.getElementById("ageInput");
-    const checkBtn = document.getElementById("checkBtn");
-    const ageMessage = document.getElementById("ageMessage");
-    checkBtn.addEventListener("click", () => {
-      const age = Number(ageInput.value);
-      if(isNaN(age) || age < 0){
-        ageMessage.textContent = "Please, enter a valid age!";
-        ageMessage.style.color = "red";
-      } else if(age < 18){
-        ageMessage.textContent = "You are a minor.";
-        ageMessage.style.color = "orange";
-      } else if(age <= 60){
-        ageMessage.textContent = "You are an adult.";
-        ageMessage.style.color = "green";
-      } else {
-        ageMessage.textContent = "You are a senior citizen.";
-        ageMessage.style.color = "blue";
-      }
-    });
-
-    // Background Color Changer
-    const button = document.getElementById("colorBtn");
-    function getRandomColor(){
-      const letters = '0123456789ABCDEF';
-      let color = '#';
-      for(let i=0;i<6;i++) color += letters[Math.floor(Math.random()*16)];
-      return color;
-    }
-    button.addEventListener("click", () => {
-      document.body.style.backgroundColor = getRandomColor();
-    });
-
-    // Contact Form
-    const form = document.getElementById("contactForm");
-    const formMessage = document.getElementById("formMessage");
-    form.addEventListener("submit", function(e){
-      e.preventDefault();
-      const name = document.getElementById("name").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const messageField = document.getElementById("messageField").value.trim();
-
-      if(!name || !email || !messageField){
-        formMessage.textContent = "Please, Fill all the fields!";
-        formMessage.style.color = "red";
-        return;
-      }
-      if(!email.includes("@")){
-        formMessage.textContent = "Please, Enter a valid email!";
-        formMessage.style.color = "red";
-        return;
-      }
-
-      formMessage.textContent = "Form Sent Successfully!";
-      formMessage.style.color = "green";
-      form.reset();
-    });
-  </script>
 </body>
+
 </html>
