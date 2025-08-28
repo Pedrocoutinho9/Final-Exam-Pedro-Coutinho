@@ -2,164 +2,127 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Final Exam</title>
+  <title>My Page</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.5s;
+    }
+    .container {
+      text-align: center;
+      width: 400px;
+      padding: 20px;
+      border: 2px solid #333;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    input, button {
+      padding: 8px;
+      font-size: 16px;
+      margin: 5px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    ul {
+      padding-left: 20px;
+      text-align: left;
+    }
+    #student-details {
+      border: 2px solid #333;
+      padding: 15px;
+      margin: 15px 0;
+      background-color: #f0f0f0;
+      border-radius: 5px;
+      text-align: left;
+    }
+    #result, #message {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    h1 {
+      margin-bottom: 10px;
+    }
+    #colorBtn {
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+  </style>
 </head>
 <body>
-  <h1>My Top 5 movies</h1>
-  <ul id="filmes-lista"></ul>
+
+  <div class="container">
+
+    <h1>My Top 5 Movies</h1>
+    <ul id="filmes-lista"></ul>
+
+    <h1>Student Details</h1>
+    <div id="student-details"></div>
+
+    <h1>Calculate Square</h1>
+    <input type="number" id="numberInput" placeholder="Type a number" />
+    <button id="calculateBtn">Calculate</button>
+    <div id="result"></div>
+
+    <h1>Age Verification</h1>
+    <input type="number" id="ageInput" placeholder="Type your age" />
+    <button id="checkBtn">Verify</button>
+    <div id="message"></div>
+
+    <h1>Background Color Changer</h1>
+    <button id="colorBtn">Change</button>
+
+  </div>
 
   <script>
-    const filmes = [
-      "The godfather",
-      "A clockwork orange",
-      "Pulp Fiction",
-      "Interstellar",
-      "Scarface"
-    ];
-
-
+    // Movies
+    const filmes = ["The Godfather","A Clockwork Orange","Pulp Fiction","Interstellar","Scarface"];
     const lista = document.getElementById("filmes-lista");
-
     filmes.forEach(filme => {
       const li = document.createElement("li"); 
       li.textContent = filme;                   
       lista.appendChild(li);                    
     });
-  </script>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <title>Detalhes do Estudante</title>
-  <style>
-    #student-details {
-      border: 2px solid #333;
-      padding: 15px;
-      width: 300px;
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-    }
-    ul {
-      padding-left: 20px;
-    }
-  </style>
-</head>
-<body>
-  <h1>Student Details</h1>
-  <div id="student-details"></div>
-
-  <script>
-   
-    const Students = {
-      Name: "Pedro",
-      Age: 22,
-      Skills: ["JavaScript", "HTML", "CSS"]
-    };
-
-  
+    // Student Details
+    const Students = { Name: "Pedro", Age: 22, Skills: ["JavaScript","HTML","CSS"] };
     const detailsDiv = document.getElementById("student-details");
-
-    
-    let content = `
+    detailsDiv.innerHTML = `
       <p><strong>Name:</strong> ${Students.Name}</p>
-      <p><strong>age:</strong> ${Students.Age}</p>
+      <p><strong>Age:</strong> ${Students.Age}</p>
       <p><strong>Skills:</strong></p>
-      <ul>
-        ${Students.Skills.map(skill => `<li>${skill}</li>`).join('')}
-      </ul>
+      <ul>${Students.Skills.map(skill => `<li>${skill}</li>`).join('')}</ul>
     `;
 
-    
-    detailsDiv.innerHTML = content;
-  </script>
-
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 30px;
-    }
-    input, button {
-      padding: 8px;
-      font-size: 16px;
-      margin-right: 10px;
-    }
-    #result {
-      margin-top: 20px;
-      font-weight: bold;
-    }
-  </style>
-</head>
-<body>
-  <h1>Calculate square</h1>
-  <input type="number" id="numberInput" placeholder="Type a number" />
-  <button id="calculateBtn">Calculate square</button>
-
-  <div id="result"></div>
-
-  <script>
+    // Calculate Square
     const numberInput = document.getElementById("numberInput");
     const calculateBtn = document.getElementById("calculateBtn");
     const resultDiv = document.getElementById("result");
-
     calculateBtn.addEventListener("click", () => {
-      const num = Number(numberInput.value); 
-      if (isNaN(num)) {
-        resultDiv.textContent = "Please type a valid digit!";
-      } else {
-        const squared = num * num; 
-        resultDiv.textContent = `The square of ${num} is ${squared}`;
-      }
+      const num = Number(numberInput.value);
+      if(isNaN(num)) resultDiv.textContent = "Please type a valid number!";
+      else resultDiv.textContent = `The square of ${num} is ${num*num}`;
     });
-  </script>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Verificação de Idade</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 30px;
-    }
-    input, button {
-      padding: 8px;
-      font-size: 16px;
-      margin-right: 10px;
-    }
-    #message {
-      margin-top: 20px;
-      font-weight: bold;
-      color: #333;
-    }
-  </style>
-</head>
-
-
-<body>
-  <h1>Age Verification</h1>
-  <input type="number" id="ageInput" placeholder="Type your age" />
-  <button id="checkBtn">Verify</button>
-
-  <div id="message"></div>
-
-  <script>
+    // Age Verification
     const ageInput = document.getElementById("ageInput");
     const checkBtn = document.getElementById("checkBtn");
     const messageDiv = document.getElementById("message");
-
     checkBtn.addEventListener("click", () => {
       const age = Number(ageInput.value);
-
-      if (isNaN(age) || age < 0) {
-        messageDiv.textContent = "Please, Enter a valid age!";
+      if(isNaN(age) || age < 0){
+        messageDiv.textContent = "Please, enter a valid age!";
         messageDiv.style.color = "red";
-      } else if (age < 18) {
-        messageDiv.textContent = "You are minor.";
+      } else if(age < 18){
+        messageDiv.textContent = "You are a minor.";
         messageDiv.style.color = "orange";
-      } else if (age <= 60) {
+      } else if(age <= 60){
         messageDiv.textContent = "You are an adult.";
         messageDiv.style.color = "green";
       } else {
@@ -167,17 +130,19 @@
         messageDiv.style.color = "blue";
       }
     });
+
+    // Background Color Changer
+    const button = document.getElementById("colorBtn");
+    function getRandomColor(){
+      const letters = '0123456789ABCDEF';
+      let color = '#';
+      for(let i=0;i<6;i++) color += letters[Math.floor(Math.random()*16)];
+      return color;
+    }
+    button.addEventListener("click", () => {
+      document.body.style.backgroundColor = getRandomColor();
+    });
   </script>
-</body>
-</html>
-
-
-
-
-
-
-
-
 
 </body>
 </html>
