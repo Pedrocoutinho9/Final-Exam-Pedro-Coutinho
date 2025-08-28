@@ -1,11 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Final Exam</title>
+  <meta charset="UTF-8">
+  <title>Final Exam</title>
 </head>
 <body>
+  <h1>My Top 5 movies</h1>
+  <ul id="filmes-lista"></ul>
+
+  <script>
+    const filmes = [
+      "The godfather",
+      "A clockwork orange",
+      "Pulp Fiction",
+      "Interstellar",
+      "Scarface"
+    ];
+
+
+    const lista = document.getElementById("filmes-lista");
+
+    filmes.forEach(filme => {
+      const li = document.createElement("li"); 
+      li.textContent = filme;                   
+      lista.appendChild(li);                    
+    });
+  </script>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Detalhes do Estudante</title>
+  <style>
+    #student-details {
+      border: 2px solid #333;
+      padding: 15px;
+      width: 300px;
+      font-family: Arial, sans-serif;
+      background-color: #f0f0f0;
+    }
+    ul {
+      padding-left: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Student Details</h1>
+  <div id="student-details"></div>
+
+  <script>
+   
+    const Students = {
+      Name: "Pedro",
+      Age: 22,
+      Skills: ["JavaScript", "HTML", "CSS"]
+    };
+
+  
+    const detailsDiv = document.getElementById("student-details");
+
     
+    let content = `
+      <p><strong>Name:</strong> ${Students.Name}</p>
+      <p><strong>age:</strong> ${Students.Age}</p>
+      <p><strong>Skills:</strong></p>
+      <ul>
+        ${Students.Skills.map(skill => `<li>${skill}</li>`).join('')}
+      </ul>
+    `;
+
+    
+    detailsDiv.innerHTML = content;
+  </script>
+</body>
+</html>
+
 </body>
 </html>
