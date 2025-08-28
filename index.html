@@ -113,11 +113,71 @@
       }
     });
   </script>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Verificação de Idade</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+    input, button {
+      padding: 8px;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+    #message {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+
+
+<body>
+  <h1>Age Verification</h1>
+  <input type="number" id="ageInput" placeholder="Type your age" />
+  <button id="checkBtn">Verify</button>
+
+  <div id="message"></div>
+
+  <script>
+    const ageInput = document.getElementById("ageInput");
+    const checkBtn = document.getElementById("checkBtn");
+    const messageDiv = document.getElementById("message");
+
+    checkBtn.addEventListener("click", () => {
+      const age = Number(ageInput.value);
+
+      if (isNaN(age) || age < 0) {
+        messageDiv.textContent = "Please, Enter a valid age!";
+        messageDiv.style.color = "red";
+      } else if (age < 18) {
+        messageDiv.textContent = "You are minor.";
+        messageDiv.style.color = "orange";
+      } else if (age <= 60) {
+        messageDiv.textContent = "You are an adult.";
+        messageDiv.style.color = "green";
+      } else {
+        messageDiv.textContent = "You are a senior citizen.";
+        messageDiv.style.color = "blue";
+      }
+    });
+  </script>
 </body>
 </html>
 
-</body>
-</html>
+
+
+
+
+
+
+
 
 </body>
 </html>
